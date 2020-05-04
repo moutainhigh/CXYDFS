@@ -8,7 +8,6 @@ package network;
 import master.Message;
 
 import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -70,7 +69,7 @@ public class NetworkHandle implements Runnable{
             serverChannel.register(selector, SelectionKey.OP_ACCEPT);
         }catch(IOException e){
             cleanUp();
-            Throwable ae = new IOException("initialize socketchannel and selector failed");
+            Throwable ae = new IOException("initialize socketchannel and selector failed!");
             ae.initCause(e);
             throw ae;
         }
@@ -102,7 +101,13 @@ public class NetworkHandle implements Runnable{
                     key = it.next();
                     it.remove();
                     try {
-                        rcvMsg(key);
+                        if(key.isAcceptable()){
+                            doAccept(key);//接受连接
+                        }else if(key.isReadable()){
+                            rcvMsg(key);//读
+                        }else if(key.isConnectable()){
+                            doConnect(key);//请求连接
+                        }
                     } catch (Exception e) {
                         if (key != null) {
                             key.cancel();
@@ -113,7 +118,7 @@ public class NetworkHandle implements Runnable{
                     }
                 }
 
-                //接下来处理输出
+//                //接下来处理输出
 //                while(true){
 //                    Message message = messagesFromAccesssManager.poll();
 //                    if(message == null)break;
@@ -143,7 +148,7 @@ public class NetworkHandle implements Runnable{
             SocketChannel sc = (SocketChannel) key.channel();
             ByteBuffer buffer = ByteBuffer.allocate(1024);
             sc.read(buffer);
-            System.out.println("do nothing with the message in rcvMsg");
+            System.out.println("do nothing with the message in rcvMsg!");
         }
 
         return null;
@@ -157,10 +162,57 @@ public class NetworkHandle implements Runnable{
         client.register(selector,SelectionKey.OP_READ);
     }
 
-    private void sendMsg(Message message){
+    private void sendMsg(Message message) throws IOException {
 
-        System.out.println("do nothing for now");
+        System.out.println("do nothing in send msg for now!");
+        String ip = message.get("DST");
+        SocketChannel channel;
+        //如果连接池中不存在该IP对应的socketchannel，则先建立连接
+        if((channel = connectionPool.get(ip)) == null){
+            channel = SocketChannel.open();
+            doConnect(ip,channel);
+        }else if(channel.isConnected()){
+            System.out.println("can send message!");
+        }else{
+            System.out.println("unknown exception!");
+        }
     }
+
+    private void doConnect(String ip,SocketChannel channel) throws IOException {
+
+        //如果能够立马建立连接，则将新建连接投入连接池
+        if(channel.connect(new InetSocketAddress(ip,12346))){
+            connectionPool.put(ip,channel);
+            System.out.println("connection is done in doConnect1!");
+        }
+
+        //如果不能立马建立连接，则向selector注册连接事件，稍后调用finishConnect()方法
+        else{
+            channel.register(selector,SelectionKey.OP_CONNECT);
+        }
+    }
+
+    private void doConnect(SelectionKey key) throws IOException {
+
+        SocketChannel channel = (SocketChannel)key.channel();
+        if(channel.finishConnect()){
+            String host = channel.socket().getInetAddress().getHostName();
+            connectionPool.put(host,channel);
+            System.out.println("connection is done in doConnect2");
+        }//else,连接无法建立，do nothing
+    }
+
+//    public static void main(String[] args) throws Throwable {
+//
+//        NetworkHandle handle = new NetworkHandle(12345,
+//                new AtomicBoolean(false),
+//                null,
+//                null,
+//                null,
+//                null);
+//
+//        Thread t = new Thread(handle);
+//        t.start();
 
     public static void main(String[] args) throws Throwable {
 
@@ -171,10 +223,17 @@ public class NetworkHandle implements Runnable{
                 null,
                 null);
 
+        Message message = new Message();
+        message.add("DST","127.0.0.1");
         Thread t = new Thread(handle);
         t.start();
+        handle.sendMsg(message);
+        message.add("hello","mama");
+        handle.sendMsg(message);
 
     }
+
+
 }
 
 
