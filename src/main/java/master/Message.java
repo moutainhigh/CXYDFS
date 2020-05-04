@@ -18,28 +18,50 @@ public class Message {
     public static final String READ = "READ";//读
     public static final String WRITE = "WRITE";//写
     public static final String MOVE = "MOVE";//文件迁移
+    public static final String CONNECT = "CONNECT";//建立连接
+
+    /*
+    * CONNECT:
+    * DST/SOUR
+    * */
+
 
     //从byte流还原Message
-    public Message buildFromStream(byte[] byteStream) {
+    public static Message buildFromStream(byte[] byteStream) {
 
-        return null;
+        return Message.buildFromString(new String(byteStream));
     }
 
     //把数据变成byte流
-    public byte[] parsetToStream(Message message) {
-        return null;
+    public static byte[] parsetToStream(Message message) {
+
+        return Message.parseToString(message).getBytes();
     }
 
     //从string还原Message
-    public Message buildFromString(String str) {
+    public static Message buildFromString(String str) {
 
-        return null;
+        Message msg = new Message();
+        String[] kvs = str.split("\t");
+        for(String kv:kvs){
+            String[] words = kv.split(":");
+            msg.body.put(words[0],words[1]);
+        }
+        return msg;
     }
 
     //把数据变成string
-    public String parseToString(Message message) {
+    public static String parseToString(Message message) {
 
-        return null;
+        StringBuilder result = new StringBuilder();
+        for(Map.Entry<String,String> entry:message.body.entrySet()){
+            StringBuilder tmp = new StringBuilder();
+            tmp.append(entry.getKey())
+                    .append(":")
+                    .append(entry.getValue());
+            result.append(tmp).append("\t");
+        }
+        return result.substring(0,result.length()-1);
     }
 
     //获取消息
@@ -51,8 +73,6 @@ public class Message {
     public void add(String key,String value){
         body.put(key,value);
     }
-
-
 }
 
 
