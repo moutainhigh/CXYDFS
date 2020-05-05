@@ -19,7 +19,6 @@ public class Message {
     public static final String WRITE = "WRITE";//写
     public static final String MOVE = "MOVE";//文件迁移
     public static final String CONNECT = "CONNECT";//建立连接
-
     /*
     * CONNECT:
     * DST/SOUR
