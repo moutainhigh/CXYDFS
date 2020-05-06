@@ -28,9 +28,7 @@ public class Main {
 
     private static ConcurrentHashMap<Slave, List<String>> nodeToFiles;//记录一个结点存储了哪些文件，AccessManager与NodeManager互斥访问
 
-    private static BlockingQueue<Message> messagesFromSlaveManager;//消息队列,slavemanager向网络传输线程发送消息
-
-    private static BlockingQueue<Message> messagesFromAccessManager;//消息队列，accessmanager向网络传输线程发送消息
+    private static BlockingQueue<Message> messagesFromManager;//消息队列,*slavemanager向网络传输线程发送消息
 
     private static BlockingQueue<Message> messagesToSlaveManager;//消息队列,slavemanager从网络传输线程接受消息
 
@@ -43,8 +41,7 @@ public class Main {
         files = new ConcurrentHashMap<>();
         slaves = new ConcurrentHashMap<>();
         nodeToFiles = new ConcurrentHashMap<>();
-        messagesFromSlaveManager = new LinkedBlockingDeque<>();//无限队列
-        messagesFromAccessManager = new LinkedBlockingDeque<>();
+        messagesFromManager = new LinkedBlockingDeque<>();//无限队列
         messagesToSlaveManager = new LinkedBlockingDeque<>();
         messagesToAccessManager = new LinkedBlockingDeque<>();
         logger.info("initialization in main process has been completed!");
@@ -74,7 +71,7 @@ public class Main {
                 slaves,
                 nodeToFiles,
                 messagesToAccessManager,
-                messagesFromAccessManager);
+                messagesFromManager);
         new Thread(accessManager).start();
 
         logger.info("accessmanager has been launched!");
@@ -84,7 +81,7 @@ public class Main {
                 slaves,
                 nodeToFiles,
                 messagesToSlaveManager,
-                messagesFromSlaveManager);
+                messagesFromManager);
         new Thread(slaveManager).start();
 
         logger.info("slavemanager has been launched!");
@@ -95,8 +92,7 @@ public class Main {
                 timeToStop,
                 messagesToSlaveManager,
                 messagesToAccessManager,
-                messagesFromSlaveManager,
-                messagesFromAccessManager
+                messagesFromManager
         );
         new Thread(masterNetworkHandle).start();
 

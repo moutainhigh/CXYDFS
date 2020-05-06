@@ -19,6 +19,9 @@ public class Message {
     public static final String WRITE = "WRITE";//写
     public static final String MOVE = "MOVE";//文件迁移
     public static final String CONNECT = "CONNECT";//建立连接
+    public static final String FROMHOST = "FROMHOST";//源主机IP
+    public static final String TOHOST = "TOHOST";//目的主机IP
+
     /*
     * CONNECT:
     * DST/SOUR

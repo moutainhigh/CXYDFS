@@ -64,9 +64,8 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
 
     private final BlockingQueue<Message> messagesToAccesssManager;//消息队列,向accessmanager传递消息
 
-    private final BlockingQueue<Message> messagesFromSlavesManager;//消息队列,从slavesmanager接受消息
+    private final BlockingQueue<Message> messagesFromManager;//消息队列,从*manager接受消息
 
-    private final BlockingQueue<Message> messagesFromAccesssManager;//消息队列,从accessmanager接受消息
 
 
     //构造函数
@@ -74,15 +73,13 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
                                AtomicBoolean timeToStop,
                                BlockingQueue<Message> messagesToSlavesManager,
                                BlockingQueue<Message> messagesToAccesssManager,
-                               BlockingQueue<Message> messagesFromSlavesManager,
-                               BlockingQueue<Message> messagesFromAccesssManager) throws Throwable {
+                               BlockingQueue<Message> messagesFromManager) throws Throwable {
 
         this.connectionPool = new HashMap<>();
         this.timeToStop = timeToStop;
         this.messagesToSlavesManager = messagesToSlavesManager;
         this.messagesToAccesssManager = messagesToAccesssManager;
-        this.messagesFromSlavesManager = messagesFromSlavesManager;
-        this.messagesFromAccesssManager = messagesFromAccesssManager;
+        this.messagesFromManager = messagesFromManager;
 
         try {
             this.port = port;
@@ -146,16 +143,11 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
                 //接下来处理输出
                 while(true){
                     //以非阻塞的方式获取元素
-                    Message message = messagesFromAccesssManager.poll();
+                    Message message = messagesFromManager.poll();
                     if(message == null)break;
                     sendMsg(message);
                 }
 
-                while(true){
-                    Message message = messagesFromSlavesManager.poll();
-                    if(message == null)break;
-                    sendMsg(message);
-                }
             } catch (Exception e) {
                 logger.error("error occur in sending message:\t"+e.getMessage());
                 logger.error(e.getCause().getMessage());
@@ -182,7 +174,6 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
     protected Message rcvMsg(SelectionKey key) throws IOException {
 
         //处理消息
-        if(key.isReadable()){
             try {
                 SocketChannel sc = (SocketChannel) key.channel();
                 ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -210,7 +201,7 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
                 ae.initCause(e);
                 throw ae;
             }
-        }
+
         return null;
     }
 
@@ -221,7 +212,13 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
             SocketChannel client = ssc.accept();
             client.configureBlocking(false);
             client.register(selector, SelectionKey.OP_READ);
-            logger.debug("requset from \t" + client.socket().getInetAddress().getHostName() + "\t has been accepted");
+
+            //将已建立的连接投入连接池
+            String host = client.socket().getInetAddress().getHostAddress();
+            connectionPool.put(host,client);
+
+            logger.debug("requset from \t" + host + "\t has been accepted");
+
         }catch(IOException e){
             IOException ae = new IOException("error occur in doAccept");
             ae.initCause(e);
@@ -231,8 +228,9 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
 
     protected void sendMsg(Message message) throws IOException {
 
-        String ip = message.get("DST");
+        String ip = message.get(Message.FROMHOST);
         SocketChannel channel;
+
         //如果连接池中不存在该IP对应的socketchannel，则先建立连接
         if ((channel = connectionPool.get(ip)) == null) {
             try {
@@ -250,6 +248,7 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
             buffer.put(bytes);
             buffer.flip();
             channel.write(buffer);
+
             logger.debug("message \t" + Message.parseToString(message) + "\t has been send out");
         } else {
             connectionPool.remove(ip);
@@ -290,24 +289,6 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
             ae.initCause(e);
             throw ae;
         }
-    }
-
-    public static void main(String[] args) throws Throwable {
-
-        MasterNetworkHandle handle = new MasterNetworkHandle(12345,
-                new AtomicBoolean(false),
-                null,
-                null,
-                null,
-                null);
-
-        Message message = new Message();
-        message.add("DST","127.0.0.1");
-        Thread t = new Thread(handle);
-        t.start();
-        handle.sendMsg(message);
-        message.add("hello","mama");
-        handle.sendMsg(message);
     }
 }
 
