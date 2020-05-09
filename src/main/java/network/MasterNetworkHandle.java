@@ -187,12 +187,19 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
                 //将消息插入队列
                 if (Message.HEARTBEAT.equals(message.get(Message.TYPE)) ||
                         Message.REGISTER.equals(message.get(Message.TYPE))) {//应该发送给slavemanager
+
+                    if(Message.HEARTBEAT.equals((message.get(Message.TYPE))))
+                        message.add(Message.TIMESTAMP,Long.toString(System.currentTimeMillis()));
                     messagesToSlavesManager.add(message);
+
+                    logger.debug("message has been send out to slave manager in rcvmsg!");
                 } else if (Message.READ.equals(message.get(Message.TYPE)) ||
                         Message.WRITE.equals(Message.TYPE)) {//应该发送给accessmanager
+
                     messagesToAccesssManager.add(message);
+                    logger.debug("message has been send out to access manager in rcvmsg!");
                 } else {//有可能是connect消息，do nothing
-                    logger.info("wrong message was received in rcvMsg!");
+                    logger.info("useless message was received in rcvMsg!");
                 }
 
                 logger.debug("message \t" + Message.parseToString(message) + "\t has been processed in rcvMsg!");
@@ -228,7 +235,8 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
 
     protected void sendMsg(Message message) throws IOException {
 
-        String ip = message.get(Message.FROMHOST);
+        //根据目的地址进行转发
+        String ip = message.get(Message.TOHOST);
         SocketChannel channel;
 
         //如果连接池中不存在该IP对应的socketchannel，则先建立连接

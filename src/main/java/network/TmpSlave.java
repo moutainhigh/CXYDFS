@@ -18,17 +18,16 @@ import java.util.Scanner;
 import java.util.Set;
 
 
+public class TmpSlave implements Runnable{
 
-public class TmpClient implements Runnable{
-
-    private static Logger logger = Logger.getLogger(TmpClient.class);
+    private static Logger logger = Logger.getLogger(TmpSlave.class);
 
     private String host;
     private int port;
     private Selector selector;
     private SocketChannel socketChannel;
     private volatile boolean started;
-    public TmpClient(String ip,int port) {
+    public TmpSlave(String ip, int port) {
         this.host = ip;
         this.port = port;
         try{
@@ -177,7 +176,7 @@ public class TmpClient implements Runnable{
     public static void main(String[] args) throws Exception {
 
         Scanner sca = new Scanner(System.in);
-        TmpClient client = new TmpClient("127.0.0.1",NetworkHandle.MASTERPORT);
+        TmpSlave client = new TmpSlave("127.0.0.1",NetworkHandle.MASTERPORT);
         Thread t = new Thread(client);
         t.start();
 
@@ -193,15 +192,39 @@ public class TmpClient implements Runnable{
         //建立连接
         client.sendMsg(Message.parseToString(msg));
 
-        //持续发送命令
+        //注册（跳过了1）
         msg = new Message();
         msg.add(Message.TYPE,Message.REGISTER);
         msg.add(Message.FROMHOST,"127.0.0.1");
         msg.add(Message.TOHOST,"127.0.0.1");
         msg.add(Message.SLAVEID,"1");
         msg.add(Message.PHASE,"3");
-        while("continue".equals(order = sca.next())){
+
+        Message msg2 = new Message();
+        msg2.add(Message.TYPE,Message.REGISTER);
+        msg2.add(Message.FROMHOST,"127.0.0.1");
+        msg2.add(Message.TOHOST,"127.0.0.1");
+        msg2.add(Message.SLAVEID,"2");
+        msg2.add(Message.PHASE,"3");
+
+        if("register".equals(order = sca.next())){
             client.sendMsg(Message.parseToString(msg));
+            client.sendMsg(Message.parseToString(msg2));
+        }
+
+        //发送心跳,互相投诉
+        msg = new Message();
+        msg.add(Message.TYPE,Message.HEARTBEAT);
+        msg.add(Message.SLAVEID,"1");
+        msg.add(Message.COMPLAINTS,"2");
+
+        msg2 = new Message();
+        msg2.add(Message.TYPE,Message.HEARTBEAT);
+        msg2.add(Message.SLAVEID,"2");
+        msg2.add(Message.COMPLAINTS,"1");
+        while("heartbeat".equals(order = sca.next())){
+            client.sendMsg(Message.parseToString(msg));
+            client.sendMsg(Message.parseToString(msg2));
         }
 
         //停止发送命令

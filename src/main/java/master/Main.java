@@ -9,6 +9,8 @@ import network.MasterNetworkHandle;
 import network.NetworkHandle;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
@@ -16,17 +18,22 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/*
+* 这里非常有必要将slavetofile中的文件类型显示指定为
+*
+* */
+
 public class Main {
 
     private static Logger logger = Logger.getLogger(Main.class);
 
     private static AtomicBoolean timeToStop;//结束标志，共用一个，同步关闭
 
-    private static ConcurrentHashMap<String,File> files;//文件元数据，AccessManager与NodeManager互斥访问
+    private static ConcurrentHashMap<String,File> files;//文件元数据，AccessManager与addManager互斥访问
 
-    private static ConcurrentHashMap<Integer, Slave> slaves;//结点元数据，AccessManager与NodeManager互斥访问
+    private static ConcurrentHashMap<Integer, Slave> slaves;//结点元数据，AccessManager与slaveManager互斥访问
 
-    private static ConcurrentHashMap<Slave, List<String>> nodeToFiles;//记录一个结点存储了哪些文件，AccessManager与NodeManager互斥访问
+    private static ConcurrentHashMap<Integer, List<String>> slaveToFiles;//记录一个结点存储了哪些文件，AccessManager与slaveManager互斥访问
 
     private static BlockingQueue<Message> messagesFromManager;//消息队列,*slavemanager向网络传输线程发送消息
 
@@ -40,7 +47,7 @@ public class Main {
         timeToStop = new AtomicBoolean(false);
         files = new ConcurrentHashMap<>();
         slaves = new ConcurrentHashMap<>();
-        nodeToFiles = new ConcurrentHashMap<>();
+        slaveToFiles = new ConcurrentHashMap<>();
         messagesFromManager = new LinkedBlockingDeque<>();//无限队列
         messagesToSlaveManager = new LinkedBlockingDeque<>();
         messagesToAccessManager = new LinkedBlockingDeque<>();
@@ -69,7 +76,7 @@ public class Main {
         AccessManager accessManager = new AccessManager(timeToStop,
                 files,
                 slaves,
-                nodeToFiles,
+                slaveToFiles,
                 messagesToAccessManager,
                 messagesFromManager);
         new Thread(accessManager).start();
@@ -79,7 +86,7 @@ public class Main {
         //启动slavemanager线程
         SlaveManager slaveManager = new SlaveManager(timeToStop,
                 slaves,
-                nodeToFiles,
+                slaveToFiles,
                 messagesToSlaveManager,
                 messagesFromManager);
         new Thread(slaveManager).start();
