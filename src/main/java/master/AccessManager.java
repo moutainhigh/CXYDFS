@@ -7,7 +7,6 @@ package master;
 
 import org.apache.log4j.Logger;
 import other.Handler;
-
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,52 +34,48 @@ public class AccessManager implements Runnable{
 
     public static final int DUPLICATIONNUMS = 3; //默认副本数为3
 
-//才哦用随机算法，选择一个salve作为访问到目标结点
+//采用随机算法，选择一个salve作为访问到目标结点
     private class AccessHandler implements Handler {
 
-        private Slave selectSlave(List<Integer> ids){
-            int id = random.nextInt(ids.size());
-            return slaves.get(id);
-        }
+    private Slave selectSlave(List<Integer> ids) {
+        int id = random.nextInt(ids.size());
+        return slaves.get(ids.get(id));
+    }
 
-        /*从slaves文件中随机选择DUPLICATIONNUMS个slave结点作为候选结点
-        但是，如果当前结点个数小于副本数，就直接返回全体结点，没有随机选择过程
+    /*从slaves文件中随机选择DUPLICATIONNUMS个slave结点作为候选结点
+    但是，如果当前结点个数小于副本数，就直接返回全体结点，没有随机选择过程
 
-         */
-        private List<Slave> selectSlaves(){
+     */
+    public List<Slave> selectSlaves() {
 
-            List<Slave> candidates = new ArrayList<>();
-            List<Integer> nums = new ArrayList<>();
-            if(slaves.size() <= DUPLICATIONNUMS){
-                candidates.addAll((Collection<? extends Slave>) slaves.keys());
-                return candidates;
-            }
-
-            int bound = DUPLICATIONNUMS;
-            while(true) {
-                int next = random.nextInt(bound);
-                if (next > bound * 0.5) {
-                    nums.add(next);
-                    bound = next;
-                }
-                if (nums.size() == 3) break;
-            }
-
-            Collections.sort(nums);
-
-            int counter = -1,k = 0;
-            for(Map.Entry<Integer,Slave> entry:slaves.entrySet()){
-                counter++;
-                if(counter == nums.get(k)){
-                    candidates.add(entry.getValue());
-                    k++;
-                    if(k == nums.size()-1)break;
-                }
-            }
+        List<Slave> candidates = new ArrayList<>();
+        List<Integer> nums = new ArrayList<>();
+        if (slaves.size() <= DUPLICATIONNUMS) {
+            candidates.addAll(slaves.values());
             return candidates;
         }
 
-        @Override
+        while (nums.size() < DUPLICATIONNUMS) {
+            int i = random.nextInt(slaves.size());
+            if (!nums.contains(i))
+                nums.add(i);
+        }
+
+        Collections.sort(nums);
+
+        int counter = -1, k = 0;
+        for (Map.Entry<Integer, Slave> entry : slaves.entrySet()) {
+            counter++;
+            if (counter == nums.get(k)) {
+                candidates.add(entry.getValue());
+                k++;
+                if (k > nums.size() - 1) break;
+            }
+        }
+        return candidates;
+    }
+
+    @Override
 
         /*
         * 如果这个文件不存在：采用随机算法，选取三个有效结点，将文件分布在这三个结点上；
@@ -117,24 +112,33 @@ public class AccessManager implements Runnable{
         * 重新发出写文件的请求。请求到达时发现文件名已经存在，走的是另外一个分支
         *
         * */
-        public void handle(Message message) throws Exception {
+    public void handle(Message message) throws Exception {
 
-            logger.info("deal with read and write in the same way for now!");
+        logger.info("deal with read and write in the same way for now!");
+
+        try {
             String fileName = message.get(Message.FILE);
-            int amount = Integer.parseInt(message.get(Message.AMOUNT));
-
             if (Message.READ.equals(message.get(Message.TYPE))) {//读文件
                 //得到文件分布的结点
                 File file = files.get(fileName);
-                if(file != null) {//文件不存在，do nothing
+                if (file != null) {//文件不存在，do nothing
                     List<Integer> nodes = file.getSlaves();
                     //采用随机算法，给出应该被访问的slave
-                    int id = random.nextInt(nodes.size() - 1);
-                    //通过slaves元数据，找到slave的IP，向他发送message
-                    Slave slave = slaves.get(id);
-                    message.add(Message.TOHOST, slave.getHost());
+                    Slave candiate = selectSlave(file.getSlaves());
+                    if (candiate != null) {
+                        //找到slave的IP，向他发送message
+                        message.add(Message.TOHOST, candiate.getHost());
+
+                        messagesOut.add(message);
+
+                        logger.debug("read request has been processed out!");
+                    } else {
+                        logger.info("the file to read doesn't exist,and this shouldn't happen!");
+                    }
                 }
             } else {//写文件
+
+                int amount = Integer.parseInt(message.get(Message.AMOUNT));
                 //首先判断文件是否存在
                 File file = files.get(fileName);
                 if (file == null) {//不存在则新建文件
@@ -144,46 +148,60 @@ public class AccessManager implements Runnable{
                     //更新files文件
                     int previous = file.getId().getAndAdd(amount);
                     List<Integer> ids = new ArrayList<>();
-                    for(Slave candidate:candidates){
+                    for (Slave candidate : candidates) {
                         ids.add(candidate.getId());
                     }
                     file.getSlaves().addAll(ids);
-                    files.put(fileName,file);
-                    Slave candidate = candidates.remove(candidates.size()-1);
+                    files.put(fileName, file);
+
+
+                    Slave candidate = candidates.remove(candidates.size() - 1);
 
                     //更新nodeToFiles文件
-                    for(int id:ids){
+                    for (int id : ids) {
 
                         List<String> f = slaveToFiles.get(id);
-                        if(f != null){
+                        if (f != null) {
                             f.add(fileName);
                         }
                     }
 
+                    logger.debug("now the slaveToFiles is:\t" + slaveToFiles.toString());
+
                     //重写消息并发送
                     message.add(Message.TOHOST, candidate.getHost());
-                    message.add(Message.RANGE,Message.rangeToStr(previous,previous+amount));
+                    message.add(Message.RANGE, Message.rangeToStr(previous, previous + amount));
 
                     String fellow = Message.fellowTransform(candidates);
                     message.add(Message.FELLOW, fellow);
 
                     messagesOut.add(message);
 
+                    logger.debug("now the files is:\t" + files.toString() +
+                            "now the slaveToFiles is:\t" + slaveToFiles.toString());
+
+
                 } else {//文件已存在,先修改内部文件，再发送消息
                     //更新files文件
                     int previous = file.getId().getAndAdd(amount);
 
-                    Slave candidate  = selectSlave(file.getSlaves());
+                    Slave candidate = selectSlave(file.getSlaves());
 
                     //重写消息并发送
                     message.add(Message.TOHOST, candidate.getHost());
-                    message.add(Message.RANGE,Message.rangeToStr(previous,previous+amount));
-                    message.add(Message.FELLOW,Message.fellowTransform(file.getSlaves(),0));
+                    message.add(Message.RANGE, Message.rangeToStr(previous, previous + amount));
+                    message.add(Message.FELLOW, Message.fellowTransform(file.getSlaves(), 0));
                     messagesOut.add(message);
+
+                    logger.debug("files now is :\t" + files);
                 }
             }
+        } catch (Exception e) {
+            logger.error("unexceptional error occur in accessmanger-handle,this should not happen!\t");
+            e.printStackTrace();
         }
     }
+}
 
     //构造函数
     public AccessManager(AtomicBoolean timeToStop,
@@ -223,9 +241,7 @@ public class AccessManager implements Runnable{
             }catch(Exception e){
                 /*e.getCause().printStackTrace();*/
             }
-
         }
-
     }
 }
 

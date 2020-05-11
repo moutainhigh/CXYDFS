@@ -42,11 +42,11 @@ public class SlaveManager implements Runnable{
 
     public static final String SLAVE = "SLAVE";//从结点类型
 
-    public static final long timeout = 500*30;//心跳超时参数
+    public static final long timeout = 10000*30;//心跳超时参数
 
     public static final int lostOut = 3;//失联超3次则被踢出
 
-    public static final int complainOut = 1;//被两个及以上的fellow投诉则踢出
+    public static final int complainOut = 2;//被两个及以上的fellow投诉则踢出
 
     //处理注册的handler
     private class RegisterHandler implements Handler{
@@ -83,6 +83,11 @@ public class SlaveManager implements Runnable{
                     heartbeats.put(id, heartbeat);
 
                     slaveToFiles.put(id, new ArrayList<>());
+
+                    logger.debug("the message in phase"+phase+"has been process,hand out to the queue! \n" +
+                            "the slave now is :\t"+slaves+"\n"+
+                            "the heartbeats now is:"+heartbeats+"\n" +
+                            "the slaveToFiles now is:"+slaveToFiles);
                 }
             }
             //共有操作：phase+1,tohost与fromhost调转
@@ -90,11 +95,6 @@ public class SlaveManager implements Runnable{
             Message.reverseHost(message);
 
             messagesOut.add(message);
-
-            logger.debug("the message in phase"+phase+"has been process,hand out to the queue!");
-            logger.debug("the slave now is :\t"+slaves);
-            logger.debug("the heartbeats now is :\t"+heartbeats);
-            logger.debug("the slaveToFiles now is :\t"+slaveToFiles);
         }
     }
 
@@ -152,8 +152,6 @@ public class SlaveManager implements Runnable{
                 //更新被投诉结点
                 String[] complaints = Message.strToComplaint(message.get(Message.COMPLAINTS));
 
-                logger.debug("complaints is:\t"+Arrays.toString(complaints));
-
                 for(String complaint : complaints){
                    Heartbeat host = heartbeats.get(Integer.parseInt(complaint));
                    if(host != null){//host等于null说明被投诉的结点已经被删除了，但是更新没有及时传递到从结点，do nothing
@@ -207,7 +205,6 @@ public class SlaveManager implements Runnable{
     * */
     private void scanHeartbeat(){
 
-        logger.debug("heartbeat scan is processing,and the current timestamp is \t"+System.currentTimeMillis());
 
        for(Map.Entry<Integer,Heartbeat> entry:heartbeats.entrySet()){
            boolean isTimeout = false;
@@ -247,8 +244,6 @@ public class SlaveManager implements Runnable{
                 scanHeartbeat();
             }
         },1000l,(long)(timeout*1.5));
-
-        logger.info("heartbeat gurad has lunched!");
 
         while(!timeToStop.get()){
 

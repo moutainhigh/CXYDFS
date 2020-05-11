@@ -194,7 +194,7 @@ public class MasterNetworkHandle  extends NetworkHandle implements Runnable{
 
                     logger.debug("message has been send out to slave manager in rcvmsg!");
                 } else if (Message.READ.equals(message.get(Message.TYPE)) ||
-                        Message.WRITE.equals(Message.TYPE)) {//应该发送给accessmanager
+                        Message.WRITE.equals(message.get(Message.TYPE))) {//应该发送给accessmanager
 
                     messagesToAccesssManager.add(message);
                     logger.debug("message has been send out to access manager in rcvmsg!");

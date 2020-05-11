@@ -160,7 +160,7 @@ public class TmpSlave implements Runnable{
     }
     private void doConnect() throws IOException{
         //若能够马上建立连接则返回true，否则返回false
-        socketChannel.bind(new InetSocketAddress("localhost",14441));
+        socketChannel.bind(new InetSocketAddress("localhost",NetworkHandle.SLAVEPORT));
         if(socketChannel.connect(new InetSocketAddress(host,port)));
         //若不能马上建立连接，则向selector注册，稍后由finishConnect方法来完成
         //注册事件是请求连接，一旦该channel请求连接，该请求会被selector捕获到
@@ -212,20 +212,20 @@ public class TmpSlave implements Runnable{
             client.sendMsg(Message.parseToString(msg2));
         }
 
-        //发送心跳,互相投诉
-        msg = new Message();
-        msg.add(Message.TYPE,Message.HEARTBEAT);
-        msg.add(Message.SLAVEID,"1");
-        msg.add(Message.COMPLAINTS,"2");
-
-        msg2 = new Message();
-        msg2.add(Message.TYPE,Message.HEARTBEAT);
-        msg2.add(Message.SLAVEID,"2");
-        msg2.add(Message.COMPLAINTS,"1");
-        while("heartbeat".equals(order = sca.next())){
-            client.sendMsg(Message.parseToString(msg));
-            client.sendMsg(Message.parseToString(msg2));
-        }
+//        //发送心跳,互相投诉
+//        msg = new Message();
+//        msg.add(Message.TYPE,Message.HEARTBEAT);
+//        msg.add(Message.SLAVEID,"1");
+//        msg.add(Message.COMPLAINTS,"2");
+//
+//        msg2 = new Message();
+//        msg2.add(Message.TYPE,Message.HEARTBEAT);
+//        msg2.add(Message.SLAVEID,"2");
+//        msg2.add(Message.COMPLAINTS,"1");
+//        while("heartbeat".equals(order = sca.next())){
+//            client.sendMsg(Message.parseToString(msg));
+//            client.sendMsg(Message.parseToString(msg2));
+//        }
 
         //停止发送命令
         while(!"quit".equals(order)){

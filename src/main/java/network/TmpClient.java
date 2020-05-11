@@ -161,7 +161,7 @@ public class TmpClient implements Runnable{
     }
     private void doConnect() throws IOException{
         //若能够马上建立连接则返回true，否则返回false
-        socketChannel.bind(new InetSocketAddress("localhost",14441));
+        socketChannel.bind(new InetSocketAddress("localhost",NetworkHandle.CLIENTPORT));
         if(socketChannel.connect(new InetSocketAddress(host,port)));
         //若不能马上建立连接，则向selector注册，稍后由finishConnect方法来完成
         //注册事件是请求连接，一旦该channel请求连接，该请求会被selector捕获到
@@ -185,6 +185,7 @@ public class TmpClient implements Runnable{
         while(!"start".equals(order)){
             order = sca.next();
         }
+
         //可以发送命令
         Message msg = new Message();
         msg.add(Message.TYPE,Message.CONNECT);
@@ -195,12 +196,25 @@ public class TmpClient implements Runnable{
 
         //持续发送命令
         msg = new Message();
-        msg.add(Message.TYPE,Message.REGISTER);
+        msg.add(Message.TYPE,Message.WRITE);
+        msg.add(Message.FILE,"tmp1");
+        msg.add(Message.AMOUNT,"100");
         msg.add(Message.FROMHOST,"127.0.0.1");
         msg.add(Message.TOHOST,"127.0.0.1");
-        msg.add(Message.SLAVEID,"1");
-        msg.add(Message.PHASE,"3");
-        while("continue".equals(order = sca.next())){
+
+        while("write".equals(order = sca.next())){
+            client.sendMsg(Message.parseToString(msg));
+        }
+
+        //持续发送命令
+        msg = new Message();
+        msg.add(Message.TYPE,Message.READ);
+        msg.add(Message.FILE,"tmp1");
+        msg.add(Message.RANGE,"10000");
+        msg.add(Message.FROMHOST,"127.0.0.1");
+        msg.add(Message.TOHOST,"127.0.0.1");
+
+        while("read".equals(order = sca.next())){
             client.sendMsg(Message.parseToString(msg));
         }
 
