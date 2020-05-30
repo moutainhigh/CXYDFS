@@ -9,6 +9,6 @@ class BlockTest {
     @Test
     void getBlockID() {
 
-        System.out.println(Block.getBlockID(1l));
+        System.out.println(Block.getBlockID(6001l));
     }
 }

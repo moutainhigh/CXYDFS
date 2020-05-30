@@ -26,7 +26,7 @@ public class MasterAgent {
 
     public static final int NUMSPERBLOCK = 1000;//每一块所包含的数据条数
     public static final int POOLSIZE = 100;//线程池大小
-    public static final int DUPLICATIONNUMS = 5;//副本数
+    public static final int DUPLICATIONNUMS = 3;//副本数
 
     public static  ConcurrentHashMap<Integer, Slave> slaves ;//结点元数据
 
