@@ -1,0 +1,263 @@
+-主结点：
+1）维护所有块的元数据信息
+    动态生成块的编号
+	动态维护块的副本所在的结点
+2）维护所有数据的元数据信息
+    动态生成数据的编号
+3）动态维护结点的元数据信息
+	注册新结点
+	踢出失联结点
+
+网络通讯模型	
+信息处理模型
+
+	
+   
+==============================================================
+静态资源：
+==============================================================
+
+ 抽象类Node：
+   
+  属性：
+   int id;//结点唯一标识
+   type;//结点类型，分为MASTER,SLAVE,HOST
+   ip;//分布的主机ip
+   port;//通信端口（用于消息）
+  
+   
+   构造函数：
+   Node(id,type,host,port);
+   
+   操作：
+    获取各个属性的接口，但不可修改
+   
+ 子类Master继承Node,do nothing for now!
+ 
+ 子类Slave继承Node
+  属性：
+  List<Integer> blocks;//存储的数据块
+  Heartbeat heartbeat;//结点的心跳
+  
+  操作： 
+   heartbeat getheartbeat();//获取心跳
+   void addblock();//增加新块，互斥访问
+   void addblocks();//增加一批新块，互斥访问
+   void removeblock();//删除块，互斥访问
+   
+  类Heartbeat：
+   属性：
+    long thisContact;//本次握手
+	long lastContact;//上次握手
+	int lost;//连续失联次数
+	set complaints;//被谁“举报了”
+	
+   操作： 
+    void updateContact();//以互斥的方式，同步更新contact信息
+	long getDiff();//以互斥的方式，得到本次与上次握手的时间差
+	complaints getComplaints();//以互斥的方式，得到complaints
+	void addComplaints();//增加一批投诉结点
+
+ 类Block：
+  属性：
+   int id;//块id,基本信息
+   list nodes;//分布的结点 
+   //atomicinteger nums;//当前数据条数，由各结点自己维护
+   //atomicinteger activenums;//当前有效数据条数，由各结点自己维护
+
+   
+  静态属性：
+   float THRESHOLD;//阈值，当数据块中有效数据的条数低于此阈值时，触发数据迁移
+   
+   
+   
+  操作： 
+   id getID();//获取id
+   nodes getnodes();//获取nodes，互斥访问
+   addnode(node);//增加一个node,互斥访问
+   addnodes(nodes);//增加一批node，互斥访问
+   removenode(node);//删除一个node，互斥访问
+  
+  类Message
+   属性：
+    hashmmap messagebox;//信箱
+	
+   操作：
+    value getMessage(key);//获取消息
+	addMessage(key,value);//新增消息
+	bytes parseToStream(msg);//将消息转换为byte流
+	msg buildFromStream(bytes);//从byte流中构建消息
+    str parseToString(msg);//将消息转换成str
+	msg buildFromStr(str);//从str中构建消息
+	
+	其他与消息有关的特定操作
+	
+  类MessagePool
+   定义了消息的格式
+   
+==============================================================
+动态处理消息请求：
+==============================================================
+
+  Handler顶层接口
+   方法handle()
+  
+  抽象类MasterAccessHandler实现了Handler和Runnable接口
+   
+	操作：
+	abstract handle();//处理消息
+	abstract run();//调用handle()
+	
+  类MasterReadHandler继承MasterAccessHandler
+   属性：
+    message msg;//待处理消息
+	
+   操作：
+    handle();//处理读请求
+	run();
+	
+  类MasterWriteHandler继承MasterAccessHandler
+   属性：
+    message msg;//待处理消息
+	
+   操作：
+    handle();//处理写请求
+	run();
+	
+  类MasterHeartbeatHandler实现了handler接口和runnable接口
+  它对心跳信息处理信息不会发送消息
+   属性:
+     message msg;//待处理消息
+	 
+   操作：
+    handle();//处理心跳信息
+	run();
+	
+   类MasterRegisterHandler实现了handler接口和runnable接口
+    属性:
+	 message msg;//待处理消息
+	 
+	操作：
+	  handle();//处理心跳信息
+	 run();
+	 
+==============================================================
+网络通信器：
+==============================================================
+
+ 抽象类Dispatcher
+  属性：
+   hashmap map;//消息到handler的映射
+   
+  abstract void dispatch();//实现消息的调度
+ 
+ 类MasterDispatcher继承Dispatcher
+  具体实现dispatch()方法
+ 
+
+ 抽象类NetworkHelper,实现runnable接口
+  属性：
+   blockingqueue messagein;//输入消息队列
+   blockingqueue messageout;//输出消息队列
+   Dispatcher dispatcher;//调度器，对接受到的不同类型的消息，交给不同的handler去执行
+   
+  静态属性：
+   int MASTERPORT;//主结点通讯端口
+   int SLAVEPORT;//从节点通讯端口
+   int HOSTPORT;//接待点通讯端口
+   
+ 
+  abstract void start();//初始阶段，启动服务器
+  abstract void accept();//服务器角色，接受连接建立，将新建连接投入线程池
+  abstract void connect();//线程池角色，请求与服务器建立连接
+  abstract void rcvmsg();//接收消息
+  abstract void sendmsg();//发送消息
+  abstract void cleanup();//连接关闭，清理资源
+  
+	 
+==============================================================
+主结点代理：
+==============================================================
+	 
+ 类MasterAgent
+  属性：
+   concurrenthashmap slaves;//结点元数据
+   concurrenthashmap blocks;//块元数据
+   atomiclong dataID;//数据id生成器
+   atomiclong blockID;//块id生成器
+   atomiclong slaveID；//结点id生成器
+   blockingqueue queue1;//消息队列1
+   blockingqueue queue2;//消息队列2
+   threadpool engine;//处理消息的引擎，线程池
+   Timer heartbeatguard;//定时器，定时地检查节点的心跳情况
+   
+   initialize();//初始化资源
+   stop();//释放资源
+   
+   
+   静态属性： 
+    int NUMSPERBLOCK;//每一块所包含的数据条数	
+	int POOLSIZE;//线程池大小
+	int QUEUELENGTH;//消息队列的长度
+	
+	main方法，程序执行的入口
+	 启动线程池;
+	 启动heartbeatgurad;
+	 启动dispatcher;
+	 启动网络通讯器;
+	 
+	然后进入while循环，直到收到终止命令
+	
+	关闭线程池;
+	关闭heartbeatguard;
+	关闭dispatcher；（通过发送终止命令）
+	关闭网络连接
+   
+	 
+==============================================================
+主结点静态资源的序列化与反序列化：
+==============================================================
+序列化：
+  序列化对象：
+   slaves（只序列化value）
+   blocks（只序列化value）
+   dataID 
+   blockID
+   slaveID；
+  序列化方法：
+   利用Java对象的原生序列化接口serilizable
+   slaves存储在一个文件
+   block存储在一个文件
+   id又分别存储在不同的文件 
+   
+ Slave:实现Serilizable接口
+ block:实现Serilizable接口
+ 
+ 工具类SeriUtil
+ 没有任何属性
+ 
+ 操作：
+ void saveslaves(file,slaves);//序列化slaves到path指定的路径下
+ void saveblocks(file,blocks);//序列化blocks到path指定的路径下
+ void savedataid(file,dataID);//序列化dataid到path指定的路径下
+ void saveslaveid(file,slaveID；);//序列化slaveid到path指定的路径下
+ void saveblockid(file,blockID);//序列化blockid到path指定的路径下
+ 
+ 工具类DeseriUtil
+ 没有任何属性
+ 
+ 操作：
+ slaves restoreslaves(file);//从path指定的路径下反序列化出slaves
+ blocks restoreblocks(file);//从path指定的路径下反序列化出blocks
+ void restoredataid(file);//从path指定的路径下反序列化出dataid
+ void restoreslaveid(file);//从path指定的路径下反序列化出slaveid
+ void restoreblockid(file);//从path指定的路径下反序列化出blockid
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+  

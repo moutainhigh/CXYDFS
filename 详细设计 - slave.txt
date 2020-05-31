@@ -1,0 +1,237 @@
+从结点：
+1）数据的存储管理
+2）处理读写请求
+3）定期向主结点汇报心跳
+==============================================================
+静态资源：
+==============================================================
+  
+ 抽象类Fellow继承Node, do nothing for now!
+
+ 类DataBlock：
+  属性：
+   int id;//块id,基本信息
+   list nodes;//分布的结点 
+   atomicinteger nums;//当前数据条数
+   atomicinteger activenums;//当前有效数据条数
+   FileCollection files;//存储的randomaccessfile文件
+
+  静态属性：
+   float THRESHOLD;//阈值，当数据块中有效数据的条数低于此阈值时，触发数据迁移
+   long FILESIZE;//randomaccessfile文件大小，
+   
+  操作： 
+   id getID();//获取id
+   nodes getnodes();//获取nodes，互斥访问
+   addnode(node);//增加一个node,互斥访问
+   addnodes(nodes);//增加一批node，互斥访问
+   removenode(node);//删除一个node，互斥访问
+   Path rootpath;//该block所在文件根路径
+   
+   /*对file 的互斥访问*/
+   
+  类FileCollection：
+   属性：
+    randomaccessfile metafile;//存储每一个dataid到块的映射，到块中位置的映射(磁盘)
+	list<randomaccessfile> datafiles;//以randomaccessfile文件的形式存储数据
+	
+  操作：
+   initialize();//序列化metafile
+   cleanup();//反序列化metafile
+   record locate(dataid);//给定数据id，定位数据所在的文件和在文件中的位置
+   read(record);
+   write(record);
+   
+   /*
+   如何定位：
+   给定dataid为10的数据，可以通过计算得到它的metarecord在metafile中的位置：
+   （10-1）*20；
+   */
+	
+ 类MetaRecord，长度固定为20个字节
+  属性：
+   long dataID;//数据id(8字节)
+   Path file;//数据所在的文件（4字节）
+   long pos;//数据在文件中的位置，包括起始地址和长度（8字节）
+ 
+==============================================================
+动态处理消息请求：
+==============================================================
+
+
+  类SlaveReadHandler继承MasterAccessHandler
+   属性：
+    message msg;//待处理消息
+	
+   操作：
+    handle();//处理读请求
+	run();
+	
+  类MasterWriteHandler继承MasterAccessHandler
+   属性：
+    message msg;//待处理消息
+	
+   操作：
+    handle();//处理写请求
+	run();
+
+	
+   类MasterRegisterHandler实现了handler接口和runnable接口
+    属性:
+	 message msg;//待处理消息
+	 
+	操作：
+	  handle();//处理心跳信息
+	 run();
+	
+	 
+==============================================================
+网络通信器：
+==============================================================
+
+ 抽象类Dispatcher
+  属性：
+   hashmap map;//消息到handler的映射
+   
+  abstract void dispatch();//实现消息的调度
+ 
+ 类MasterDispatcher继承Dispatcher
+  具体实现dispatch()方法
+ 
+
+ 抽象类NetworkHelper,实现runnable接口
+  属性：
+   blockingqueue messagein;//输入消息队列
+   blockingqueue messageout;//输出消息队列
+   Dispatcher dispatcher;//调度器，对接受到的不同类型的消息，交给不同的handler去执行
+   
+  静态属性：
+   int MASTERPORT;//主结点通讯端口
+   int SLAVEPORT;//从节点通讯端口
+   int HOSTPORT;//接待点通讯端口
+   
+ 
+  abstract void start();//初始阶段，启动服务器
+  abstract void accept();//服务器角色，接受连接建立，将新建连接投入线程池
+  abstract void connect();//线程池角色，请求与服务器建立连接
+  abstract void rcvmsg();//接收消息
+  abstract void sendmsg();//发送消息
+  abstract void cleanup();//连接关闭，清理资源
+  
+	 
+==============================================================
+从结点代理：
+==============================================================
+	 
+ 类SlaveAgent
+  属性：
+   concurrenthashmap fellows;//伙伴结点元数据
+   concurrenthashmap blocks;//块元数据
+   blockingqueue msgqueue1;//消息队列1
+   blockingqueue msgqueue2;//消息队列2
+   blockingqueue taskqueue1;//数据传输任务队列1
+   blockingqueue taskqueue2;//数据传输任务队列2
+   threadpool msgengine;//处理消息的引擎，线程池
+   threadpool dataengine;//处理任务的引擎，线程池
+   Timer heartbeatguard;//定时器，定时地发送节点的心跳
+   
+   initialize();//初始化资源
+   stop();//释放资源
+   
+	
+==============================================================
+主结点静态资源的序列化与反序列化：
+==============================================================
+序列化：
+  序列化对象：
+   fellows（只序列化value）
+   blocks（只序列化value）
+  序列化方法：
+   利用Java对象的原生序列化接口serilizable
+   fellows存储在一个文件
+   blocks存储在一个文件
+  
+ Slave:实现Serilizable接口
+ block:实现Serilizable接口
+ 
+ 工具类SeriUtil
+ 没有任何属性
+ 
+ 操作：
+ void savefellows(file,slaves);//序列化slaves到path指定的路径下
+ void saveDatablocks(file,blocks);//序列化blocks到path指定的路径下
+ 
+ 
+ 工具类DeseriUtil
+ 没有任何属性
+ 
+ 操作：
+ slaves restorefellows(file);//从path指定的路径下反序列化出slaves
+ blocks restoreDataBlocks(file);//从path指定的路径下反序列化出blocks
+
+
+==============================================================
+数据传输-静态资源
+==============================================================
+
+  类DataTransferTask，包装数据传输任务
+  属性：
+   int type;//0表示读，1表示写
+   string host;//原发站点的ip地址
+   Path path;//文件路径
+ 
+==============================================================
+数据传输-动态处理task
+============================================================== 
+ 
+  接口DataTransferService定义了数据传输的方法
+   
+   操作：
+   write(file,outputstream);//从file中把byte流写入到outputstream
+   read(file,inputstream);//从inputstream中把byte流读入到文件
+   
+  类SlaveDataTransferService实现了DataTransferService接口
+  具体实现了write和read操作
+  
+  接口TaskHandler定义了处理任务的方法
+   操作：
+    handle();
+	
+  抽象类AbstractTaskHandler实现了TaskHandler接口和runnable接口和cloneable接口
+   属性：
+    Task task;
+  
+   操作：
+    克隆
+
+ 
+ 类SlaveReadTaskHandler继承自abstractTaskHandler
+
+  操作：
+   handle();//处理task
+   run();
+   
+ 类SlaveWriteTaskHandler继承自abstractTaskHandler
+
+  操作：
+   handle();//处理task
+   run();
+   
+   
+ 抽象类TaskDispatcher
+  属性：
+  hashmap<string,abstracttaskhandler>
+  操作：
+   dispatch();
+   
+ 类SlaveTaskDispatcher继承自抽象类TaskDispatcher
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+  
