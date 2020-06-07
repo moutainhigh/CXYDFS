@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9c736a2d-3f0b-4a35-91ba-c0474e76c606" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/master/staticresource/Block.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/master/staticresource/Heartbeat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/master/staticresource/Master.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/master/staticresource/Slave.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataBlock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataPath.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/Fellow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/FileCollection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/MetaRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo16.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo17.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo18.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo19.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo20.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo21.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo22.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo23.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo24.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo25.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo26.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo27.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo28.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo29.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Demo30.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/serverclient/MappedByteBufferTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/serverclient/TransferToClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/serverclient/TransferToServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/serverclient/TransferToServer2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/CXYDFS.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/log4j/Demo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/agent/MasterAgent$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/agent/MasterAgent.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/dispatcher/MasterDispatcher$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/dispatcher/MasterDispatcher$DispatcherHolder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/dispatcher/MasterDispatcher.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterAccessHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterHeartbeatHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterReadHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterRegisterHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterWriteHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/network/NetworkHelper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/staticresource/Block.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/staticresource/Heartbeat.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/staticresource/Master.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/master/staticresource/Slave.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/AbstractHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/Dispatcher.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/FilePath.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/Handler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/Message.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/MessagePool.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/Node.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/DataBlock.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/DataPath.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/DataRecord.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/Fellow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/FileCollection.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/MetaRecord$Pair.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/MetaRecord.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/Task.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/util/Deseri.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/util/SeriUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo10.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo12.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo13.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo14.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo15.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo16.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo17.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo18.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo19.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo20.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo21.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo22.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo23.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo24.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo25.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo26.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo27.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo28.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo29.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo30.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo8.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo9.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/DemoThread.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/FileBlockReader.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/FileBlockWriter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/FileBlockWriter2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/META-INF/CXYDFS.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/MyObj.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/demo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/master/agent/MasterAgentTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/master/handler/MasterReadHandlerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/master/handler/MasterWriteHandlerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/master/staticresource/BlockTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/MappedByteBufferTest$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/MappedByteBufferTest$FileBlockWriter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/MappedByteBufferTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/TransferToClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/TransferToServer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/TransferToServer2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/dispatcher/Demo5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/dispatcher/In.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/dispatcher/MasterDispatcherTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/handler/MasterHeartbeatHandlerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/handler/MasterRegisterHandlerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/master/agent/MasterAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/agent/MasterAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterAccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterAccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterHeartbeatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterHeartbeatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterReadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterReadHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterRegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterRegisterHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterWriteHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterWriteHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/miscellaneous/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/miscellaneous/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/Deseri.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/Deseri.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/SeriUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/SeriUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Demo14.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Demo14.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Demo15.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Demo15.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/master/agent/MasterAgentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/master/agent/MasterAgentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/master/handler/MasterReadHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/master/handler/MasterReadHandlerTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="E:\idea\CXYDFS" />
+        <option value="E:\idea\CXYDFS\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1bO0zHZi0WX8m6rcBqBJf64kJpM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="master.handler" />
+      <recent name="master.staticresource" />
+      <recent name="master.agent" />
+      <recent name="test.master.handler" />
+      <recent name="test.master.dispatcher" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="master.staticresource" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="serverclient" />
+      <recent name="v2" />
+      <recent name="master" />
+      <recent name="network" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\idea\CXYDFS\src\test\java" />
+      <recent name="E:\idea\CXYDFS\src\main\java\v2" />
+      <recent name="E:\idea\CXYDFS\src\main\java\network" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Demo30">
+    <configuration name="Demo27" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo27" />
+      <module name="CXYDFS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo28" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo28" />
+      <module name="CXYDFS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo29" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo29" />
+      <module name="CXYDFS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo30" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo30" />
+      <module name="CXYDFS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MappedByteBufferTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="serverclient.MappedByteBufferTest" />
+      <module name="CXYDFS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="serverclient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Demo30" />
+        <item itemvalue="Application.Demo29" />
+        <item itemvalue="Application.Demo27" />
+        <item itemvalue="Application.Demo28" />
+        <item itemvalue="Application.MappedByteBufferTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c736a2d-3f0b-4a35-91ba-c0474e76c606" name="Default Changelist" comment="" />
+      <created>1588488093732</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588488093732</updated>
+      <workItem from="1588488096173" duration="14324000" />
+      <workItem from="1588510366140" duration="31635000" />
+      <workItem from="1588640309122" duration="3409000" />
+      <workItem from="1588647322317" duration="4792000" />
+      <workItem from="1588652460953" duration="11074000" />
+      <workItem from="1588729421378" duration="381000" />
+      <workItem from="1588731566537" duration="3017000" />
+      <workItem from="1588752094985" duration="42000" />
+      <workItem from="1588767633360" duration="6374000" />
+      <workItem from="1588775571628" duration="626000" />
+      <workItem from="1588812296278" duration="27329000" />
+      <workItem from="1588853268543" duration="6883000" />
+      <workItem from="1588902045904" duration="6591000" />
+      <workItem from="1588917749421" duration="8362000" />
+      <workItem from="1588943826429" duration="8874000" />
+      <workItem from="1588985753642" duration="947000" />
+      <workItem from="1588986725706" duration="211000" />
+      <workItem from="1588992168557" duration="52000" />
+      <workItem from="1589069086935" duration="2089000" />
+      <workItem from="1589157475225" duration="148000" />
+      <workItem from="1589175938465" duration="31000" />
+      <workItem from="1589185875704" duration="12964000" />
+      <workItem from="1589205416615" duration="2541000" />
+      <workItem from="1589243702050" duration="1793000" />
+      <workItem from="1589248163599" duration="26000" />
+      <workItem from="1589697291487" duration="4724000" />
+      <workItem from="1589718891511" duration="4640000" />
+      <workItem from="1589723817647" duration="1011000" />
+      <workItem from="1589763563508" duration="22000" />
+      <workItem from="1589901005952" duration="2000000" />
+      <workItem from="1589903781757" duration="400000" />
+      <workItem from="1589983185912" duration="6234000" />
+      <workItem from="1590069900433" duration="5283000" />
+      <workItem from="1590075773981" duration="813000" />
+      <workItem from="1590128087525" duration="644000" />
+      <workItem from="1590240767887" duration="3857000" />
+      <workItem from="1590294907964" duration="17429000" />
+      <workItem from="1590324281445" duration="19000" />
+      <workItem from="1590324450865" duration="65000" />
+      <workItem from="1590416129770" duration="11000" />
+      <workItem from="1590416163192" duration="4962000" />
+      <workItem from="1590462286781" duration="9000" />
+      <workItem from="1590504318425" duration="2551000" />
+      <workItem from="1590508626397" duration="194000" />
+      <workItem from="1590633438416" duration="599000" />
+      <workItem from="1590718514606" duration="18772000" />
+      <workItem from="1590746533964" duration="3008000" />
+      <workItem from="1590755695256" duration="5851000" />
+      <workItem from="1590837901365" duration="6583000" />
+      <workItem from="1590887090125" duration="5891000" />
+      <workItem from="1590977142757" duration="152000" />
+      <workItem from="1590977392933" duration="848000" />
+      <workItem from="1591022300590" duration="2605000" />
+      <workItem from="1591078599514" duration="18000" />
+      <workItem from="1591102976713" duration="475000" />
+      <workItem from="1591103470479" duration="6600000" />
+      <workItem from="1591143338328" duration="685000" />
+      <workItem from="1591153072712" duration="4822000" />
+      <workItem from="1591190655707" duration="28744000" />
+      <workItem from="1591325182242" duration="9000" />
+      <workItem from="1591360884418" duration="8612000" />
+      <workItem from="1591510660651" duration="1746000" />
+      <workItem from="1591532065247" duration="4656000" />
+      <workItem from="1591537160622" duration="2223000" />
+    </task>
+    <task id="LOCAL-00001" summary="第二阶段2：&#10; 完成networkhandle的接受数据功能&#10; 测试结果见2">
+      <created>1588557937189</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588557937189</updated>
+    </task>
+    <task id="LOCAL-00002" summary="第二阶段3：&#10; 完成networkhandle的发送数据功能&#10; 测试结果见3">
+      <created>1588561598960</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588561598960</updated>
+    </task>
+    <task id="LOCAL-00003" summary="第二阶段3:&#10; 实现Message的函数：&#10;  buildFrom...&#10;  parseTo...">
+      <created>1588571244920</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588571244920</updated>
+    </task>
+    <task id="LOCAL-00004" summary="第二阶段3：&#10; 输入与输出连接了起来，masternetworkhandle可以通过网络接受消息，将消息发送给*manager处理，处理完了之后从队列中取出消息发送出去！&#10; &#10; 引入log4j日志">
+      <created>1588661366024</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1588661366024</updated>
+    </task>
+    <task id="LOCAL-00005" summary="第二阶段3：&#10; 输入与输出连接了起来，masternetworkhandle可以通过网络接受消息，将消息发送给*manager处理，处理完了之后从队列中取出消息发送出去！&#10;&#10; 引入log4j日志">
+      <created>1588689308733</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588689308733</updated>
+    </task>
+    <task id="LOCAL-00006" summary="第二阶段4：&#10; 1）服务器在收到客户端的一个连接之后，将其投入连接池，发送信息的时候直接从连接池中获取该连接；&#10; 2）减少了一个消息队列，accessmanager和slavemanager可以共用一个消息队列&#10; 测试结果见5-1 和 5-2">
+      <created>1588775526032</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588775526033</updated>
+    </task>
+    <task id="LOCAL-00007" summary="第三阶段2：&#10; 完成slavemanager 的 register功能和heartbeat功能&#10; 测试结果见 6">
+      <created>1588986069866</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1588986069866</updated>
+    </task>
+    <task id="LOCAL-00008" summary="第三阶段终结：&#10; 对accessmanager 和 slavemanager 进行了测试，测试通过！">
+      <created>1589202911482</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589202911482</updated>
+    </task>
+    <task id="LOCAL-00009" summary="完成masteragent的数据序列化与反序列化工作；&#10;完成了对masterreadhandler的测试；">
+      <created>1590766210904</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1590766210904</updated>
+    </task>
+    <task id="LOCAL-00010" summary="完成了对masterwriterhandler的测试">
+      <created>1590843882166</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1590843882166</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="第二阶段2：&#10; 完成networkhandle的接受数据功能&#10; 测试结果见2" />
+    <MESSAGE value="第二阶段3：&#10; 完成networkhandle的发送数据功能&#10; 测试结果见3" />
+    <MESSAGE value="第二阶段3:&#10; 实现Message的函数：&#10;  buildFrom...&#10;  parseTo..." />
+    <MESSAGE value="第二阶段3：&#10; 输入与输出连接了起来，masternetworkhandle可以通过网络接受消息，将消息发送给*manager处理，处理完了之后从队列中取出消息发送出去！&#10; &#10; 引入log4j日志" />
+    <MESSAGE value="第二阶段3：&#10; 输入与输出连接了起来，masternetworkhandle可以通过网络接受消息，将消息发送给*manager处理，处理完了之后从队列中取出消息发送出去！&#10;&#10; 引入log4j日志" />
+    <MESSAGE value="第二阶段4：&#10; 1）服务器在收到客户端的一个连接之后，将其投入连接池，发送信息的时候直接从连接池中获取该连接；&#10; 2）减少了一个消息队列，accessmanager和slavemanager可以共用一个消息队列" />
+    <MESSAGE value="第二阶段4：&#10; 1）服务器在收到客户端的一个连接之后，将其投入连接池，发送信息的时候直接从连接池中获取该连接；&#10; 2）减少了一个消息队列，accessmanager和slavemanager可以共用一个消息队列&#10; 测试结果见5-1 和 5-2" />
+    <MESSAGE value="第三阶段2：&#10; 完成slavemanager 的 register功能和heartbeat功能&#10; 测试结果见 6" />
+    <MESSAGE value="第三阶段终结：&#10; 对accessmanager 和 slavemanager 进行了测试，测试通过！" />
+    <MESSAGE value="完成masteragent的数据序列化与反序列化工作；&#10;完成了对masterreadhandler的测试；" />
+    <MESSAGE value="完成了对masterwriterhandler的测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成了对masterwriterhandler的测试" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="233" y="2" key="#Project_Structure" timestamp="1588648342822">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="2" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1588648342822" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588565550633">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1588565550633" />
+    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1591364445632">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591364445632" />
+    <state x="446" y="59" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1589723029722" />
+    <state x="504" y="296" width="431" height="315" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1591023000341">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="504" y="296" width="431" height="315" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591023000341" />
+    <state x="396" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588496157651">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="396" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1588496157651" />
+    <state x="450" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590720353815">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="450" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590720353815" />
+    <state x="451" y="276" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1591192696652">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="451" y="276" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591192696652" />
+    <state x="401" y="218" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.680@0.0.1280.680" timestamp="1588490569801" />
+    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1590843881036">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="296" y="0" key="CommitChangelistDialog2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590843881036" />
+    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589202908992" />
+    <state x="474" y="124" key="FileChooserDialogImpl" timestamp="1590135025726">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="474" y="124" key="FileChooserDialogImpl/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590135025726" />
+    <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1588840854976" />
+    <state x="121" y="241" key="GitRewordDialog" timestamp="1588689288024">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="241" key="GitRewordDialog/0.0.1280.680@0.0.1280.680" timestamp="1588689288024" />
+    <state x="517" y="236" width="270" height="209" key="Github.ShareDialog" timestamp="1588508402720">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="517" y="236" width="270" height="209" key="Github.ShareDialog/0.0.1280.680@0.0.1280.680" timestamp="1588508402720" />
+    <state x="492" y="47" key="Github.UntrackedFilesDialog" timestamp="1588508456168">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="492" y="47" key="Github.UntrackedFilesDialog/0.0.1280.680@0.0.1280.680" timestamp="1588508456168" />
+    <state width="1397" height="690" key="GridCell.Tab.0.bottom" timestamp="1591538425754">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="690" key="GridCell.Tab.0.bottom/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538425754" />
+    <state width="1237" height="521" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1589702019977" />
+    <state width="1397" height="690" key="GridCell.Tab.0.center" timestamp="1591538425754">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="690" key="GridCell.Tab.0.center/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538425754" />
+    <state width="1237" height="521" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1589702019977" />
+    <state width="1397" height="690" key="GridCell.Tab.0.left" timestamp="1591538425754">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="690" key="GridCell.Tab.0.left/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538425754" />
+    <state width="1237" height="521" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1589702019977" />
+    <state width="1397" height="690" key="GridCell.Tab.0.right" timestamp="1591538425754">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="690" key="GridCell.Tab.0.right/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538425754" />
+    <state width="1237" height="521" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1589702019977" />
+    <state width="1397" height="275" key="GridCell.Tab.1.bottom" timestamp="1591371531905">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="275" key="GridCell.Tab.1.bottom/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591371531905" />
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1589204935401" />
+    <state width="1397" height="275" key="GridCell.Tab.1.center" timestamp="1591371531905">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="275" key="GridCell.Tab.1.center/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591371531905" />
+    <state width="1237" height="204" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1589204935401" />
+    <state width="1397" height="275" key="GridCell.Tab.1.left" timestamp="1591371531905">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="275" key="GridCell.Tab.1.left/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591371531905" />
+    <state width="1237" height="204" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1589204935401" />
+    <state width="1397" height="275" key="GridCell.Tab.1.right" timestamp="1591371531905">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="275" key="GridCell.Tab.1.right/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591371531905" />
+    <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1589204935401" />
+    <state x="147" y="0" key="SettingsEditor" timestamp="1590723454847">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="147" y="0" key="SettingsEditor/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590723454847" />
+    <state x="131" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1589697368594" />
+    <state x="262" y="96" key="Vcs.Push.Dialog.v2" timestamp="1590843889761">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="262" y="96" key="Vcs.Push.Dialog.v2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590843889761" />
+    <state x="233" y="76" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1588689410641" />
+    <state x="105" y="118" width="1232" height="627" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591538391372">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="105" y="118" width="1232" height="627" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538391372" />
+    <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1589204603660" />
+    <state x="491" y="147" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1590840501358">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="491" y="147" key="com.intellij.testIntegration.createTest.CreateTestDialog/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590840501358" />
+    <state x="300" y="90" width="840" height="681" key="find.popup" timestamp="1590842853886">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="300" y="90" width="840" height="681" key="find.popup/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590842853886" />
+    <state x="267" y="71" width="746" height="538" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1588924299268" />
+    <state x="356" y="142" key="git4idea.merge.GitPullDialog" timestamp="1588557778243">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="356" y="142" key="git4idea.merge.GitPullDialog/0.0.1280.680@0.0.1280.680" timestamp="1588557778243" />
+    <state x="323" y="197" width="669" height="286" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1589697320495">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="323" y="197" width="669" height="286" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1280.680@0.0.1280.680" timestamp="1589697320495" />
+    <state x="462" y="52" key="refactoring.ChangeSignatureDialog" timestamp="1591023304093">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="462" y="52" key="refactoring.ChangeSignatureDialog/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591023304093" />
+    <state x="334" y="191" key="run.anything.popup" timestamp="1590243572041">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="334" y="191" key="run.anything.popup/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590243572041" />
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1588559761312" />
+    <state x="341" y="1" width="756" height="858" key="search.everywhere.popup" timestamp="1591156283157">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="341" y="1" width="756" height="858" key="search.everywhere.popup/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591156283157" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1588841513635" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/master/AccessManagerTest.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/master/handler/MasterReadHandlerTest.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/Demo25.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/Demo7.java</url>
+          <line>47</line>
+          <properties class="Demo9" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/Demo10.java</url>
+          <line>8</line>
+          <properties class="Demo10" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/test/master/handler/MasterRegisterHandlerTest.java</url>
+          <line>18</line>
+          <properties class="test.master.handler.MasterRegisterHandlerTest" method="run">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/Demo13.java</url>
+          <line>22</line>
+          <properties class="Demo13" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/master/handler/MasterReadHandlerTest.java</url>
+          <line>13</line>
+          <properties class="master.handler.MasterReadHandlerTest" method="run">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/Demo19.java</url>
+          <line>13</line>
+          <properties class="Demo19" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/Demo22.java</url>
+          <line>10</line>
+          <properties class="Demo22" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/Demo25.java</url>
+          <line>54</line>
+          <properties class="Demo25" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

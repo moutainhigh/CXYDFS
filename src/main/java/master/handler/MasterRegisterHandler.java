@@ -12,7 +12,7 @@ import miscellaneous.Message;
 import miscellaneous.MessagePool;
 import miscellaneous.Node;
 import org.apache.log4j.Logger;
-import slave.Slave;
+import master.staticresource.Slave;
 
 
 public class MasterRegisterHandler extends AbstractHandler {

@@ -11,10 +11,8 @@ import miscellaneous.Message;
 import miscellaneous.MessagePool;
 import miscellaneous.Node;
 import org.apache.log4j.Logger;
-import slave.Heartbeat;
-import slave.Slave;
-
-import java.util.Map;
+import master.staticresource.Heartbeat;
+import master.staticresource.Slave;
 
 public class MasterHeartbeatHandler extends AbstractHandler {
 

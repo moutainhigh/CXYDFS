@@ -2,18 +2,10 @@ package master.handler;
 
 import master.agent.MasterAgent;
 import master.dispatcher.MasterDispatcher;
-import master.staticresource.Block;
-import master.staticresource.Master;
 import miscellaneous.Dispatcher;
 import miscellaneous.Message;
 import miscellaneous.MessagePool;
 import org.junit.jupiter.api.Test;
-import slave.Slave;
-
-import java.util.Arrays;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
 
 class MasterReadHandlerTest {

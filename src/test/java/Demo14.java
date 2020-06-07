@@ -13,7 +13,7 @@ public class Demo14 {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Path FILEPATH = Paths.get("E:","cxydfs","slavedir");
+        Path FILEPATH = Paths.get("E:","demo");
         Path slavePath = FILEPATH.resolve("slaves");
 
         FileOutputStream fout = new FileOutputStream(slavePath.toFile());

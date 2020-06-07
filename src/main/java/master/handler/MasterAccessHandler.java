@@ -8,8 +8,7 @@ package master.handler;
 
 import master.agent.MasterAgent;
 import miscellaneous.AbstractHandler;
-import miscellaneous.Handler;
-import slave.Slave;
+import master.staticresource.Slave;
 
 import java.util.*;
 

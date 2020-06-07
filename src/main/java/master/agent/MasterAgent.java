@@ -5,13 +5,12 @@ description:
 */
 package master.agent;
 
+import master.dispatcher.MasterDispatcher;
 import master.handler.MasterHeartbeatHandler;
 import master.staticresource.Block;
-import miscellaneous.FilePath;
-import miscellaneous.Message;
-import miscellaneous.Node;
+import miscellaneous.*;
 import org.apache.log4j.Logger;
-import slave.Slave;
+import master.staticresource.Slave;
 import util.Deseri;
 import util.SeriUtil;
 import java.util.*;
@@ -48,6 +47,8 @@ public class MasterAgent {
 
     public static final AtomicBoolean timeToStop = new AtomicBoolean(false);//用于同步关闭各个组件
 
+    private static Dispatcher dispatcher;//消息分发器
+
     //初始化静态属性，slaves,blocks,ids
     public static void initialize() {
 
@@ -76,8 +77,6 @@ public class MasterAgent {
     //初始化动态资源,(设置线程池),启动网络通讯线程和心跳扫描线程
     public static void launch(){
 
-        /*启动网络通讯线程*/
-
         /*启动心跳扫描线程*/
         heartbeatguard.schedule(new TimerTask() {
             @Override
@@ -86,6 +85,13 @@ public class MasterAgent {
             }
         },1000l,(long)(Node.TIMEOUT*1.5));
 
+        /*启动调度器*/
+        dispatcher = MasterDispatcher.getInstance();
+        Thread t = new Thread(dispatcher);
+        t.start();
+
+        /*启动网络通讯线程*/
+
     }
 
     //首先要关闭动态资源
@@ -93,13 +99,18 @@ public class MasterAgent {
 
         try {
 
+            /*关闭网络通讯线程*/
+
+            /*关闭调度器*/
+            Message msgQuit = new Message();
+            msgQuit.add(MessagePool.TYPE,MessagePool.QUIT);
+
+            /**/
             /*以一种柔和的方式关闭线程池，该方法会立即返回*/
             /*为确保所有任务执行完毕，须调用awaitTermination*/
             /*该方法会一直阻塞，直到所有任务执行完毕,这里假定所有任务都是可执行完毕的*/
             engine.shutdown();
             engine.awaitTermination(Long.MAX_VALUE,TimeUnit.MILLISECONDS);
-
-            /*关闭网络通讯线程*/
 
 
             /*排空消息队列*/

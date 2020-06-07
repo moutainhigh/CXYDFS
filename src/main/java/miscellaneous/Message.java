@@ -5,7 +5,7 @@ description:消息
 */
 package miscellaneous;
 
-import slave.Slave;
+import master.staticresource.Slave;
 
 import java.util.HashMap;
 import java.util.List;

@@ -6,7 +6,7 @@ description:序列化工具类
 package util;
 
 import master.staticresource.Block;
-import slave.Slave;
+import master.staticresource.Slave;
 import java.io.*;
 import java.util.List;
 import java.util.Map;

@@ -2,14 +2,12 @@ package master.agent;
 
 import master.staticresource.Block;
 import org.junit.jupiter.api.Test;
-import slave.Slave;
+import master.staticresource.Slave;
 
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 class MasterAgentTest {

@@ -6,7 +6,7 @@ description:反序列化工具类
 package util;
 
 import master.staticresource.Block;
-import slave.Slave;
+import master.staticresource.Slave;
 
 import java.io.*;
 import java.util.ArrayList;

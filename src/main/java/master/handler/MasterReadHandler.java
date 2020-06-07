@@ -10,7 +10,7 @@ import master.staticresource.Block;
 import miscellaneous.Message;
 import miscellaneous.MessagePool;
 import org.apache.log4j.Logger;
-import slave.Slave;
+import master.staticresource.Slave;
 
 import java.util.List;
 
