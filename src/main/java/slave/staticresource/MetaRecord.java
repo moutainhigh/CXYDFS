@@ -10,53 +10,36 @@ import java.util.List;
 
 public class MetaRecord {
 
-    //封装起始地址和长度的二元组
-    public static class Pair{
-        private int start;
-        private int length;
-
-        public Pair(int start, int length) {
-            this.start = start;
-            this.length = length;
-        }
-
-        public int getStart() {
-            return start;
-        }
-
-        public int getLength() {
-            return length;
-        }
-    }
-
-
     private final long dataID;//数据id
-    private final List<Path> file;//所在文件的相对路径,有多个文件
-    private final long pos;//在文件中的起始地址和长度，合并为一个long类型
+    private final long start;//在block中的逻辑起始地址
+    private final long length;//自身长度
 
-    public MetaRecord(long dataID, List<Path> file, long pos) {
-        //this.flag = flag;
+    public MetaRecord(long dataID, long start,long length){
+
         this.dataID = dataID;
-        this.file = file;
-        this.pos = pos;
-    }
-
-    //由起始地址和长度，合并为一个long类型
-    public static long compose(Pair pair){
-        //起始地址在高32位，
-        return 0l;
-    }
-
-    //由一个long类型，解析出起始地址和长度
-    public static Pair decompose(){
-        return null;
+        this.start = start;
+        this.length = length;
     }
 
     public static MetaRecord buildFromBytes(byte[] bytes){
         return null;
     }
 
+    public long getDataID() {
+        return dataID;
+    }
 
+    public long getStart() {
+        return start;
+    }
+
+    public long getLength() {
+        return length;
+    }
+
+    public void merge(MetaRecord record){
+
+    }
 }
 
 

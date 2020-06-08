@@ -5,14 +5,18 @@ description:
 */
 package slave.staticresource;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class FileCollection {
@@ -21,38 +25,36 @@ public class FileCollection {
     private final AtomicInteger fileID;
 
     //block的元数据，存储dataid到块的映射，到块中位置的映射
-    private final RandomAccessFile metaFile;
+    private final File metaFile;
 
     //数据块
-    private final List<DataRecord> dataFiles;
+    private final List<DataRecord> dataRecords;
 
     //元数据和数据块存放的根路径
     private final Path rootPath;
 
     //读写锁
-    private ReadWriteLock lock;
+    private Lock lock;
     private Lock readLock = null;
     private Lock writeLock = null;
+
+    private AtomicLong blocklLength = null;//块的当前逻辑长度
+    private int totalBlockNums;//已创建的块数
+    private int invalidBlockNums;//已回收（销毁）的块数
 
 
     //通过文件存储的根路径来构造filecollection
     public FileCollection(Path rootPath) throws IOException {
+        fileID = new AtomicInteger(0);
         this.rootPath = rootPath;
-        Path metaPath = rootPath.resolve(DataPath.METAPATH);
-        metaPath.toFile().mkdirs();
+        metaFile = rootPath.resolve(DataPath.METAPATH).toFile();
 
-        this.fileID = new AtomicInteger(0);
-        this.metaFile = new RandomAccessFile(metaPath.resolve("meta").toFile(),"rw");
-        //默认初始时有个新块
-        this.dataFiles = new ArrayList<>();
-        dataFiles.add(new DataRecord(null,null));
+        this.dataRecords = new ArrayList<>();
 
-        this.lock = new ReentrantReadWriteLock();
-        readLock = lock.readLock();
-        writeLock = lock.writeLock();
+        this.lock = new ReentrantLock();
     }
 
-    //读取数据，
+    //读取数据
     //实际的数据读取操作通过封装一个task外包出去了
     public static void read(MetaRecord record){
 
@@ -73,7 +75,7 @@ public class FileCollection {
     如果有一个dataID序列：
     1001 1003 1004 1005；1002确实，那么中间就会空缺24个字节
     *
-    读取数据不会block的结构产生任何影响
+    读取数据不会对block的结构产生任何影响
     * */
     public  MetaRecord locate(long dataID) throws IOException {
 
@@ -85,17 +87,52 @@ public class FileCollection {
     }
 
    //根据数据长度，分配内存空间
-    public  MetaRecord allocateSpace(long dataID,long length){
-        writeLock.lock();
-        DataRecord dataRecord = dataFiles.get(dataFiles.size() - 1);
-        long freeLength = dataRecord.getFreeSpacceLength();
-        while(freeLength < length){
-            //dataRecord
+    public MetaRecord allocateSpace(long dataID,long length) throws IOException {
+
+        MetaRecord metaRecord = null;
+
+        lock.lock();
+
+        //首先要定位出块
+        int pos = totalBlockNums-invalidBlockNums-1;
+        DataRecord dataRecord = dataRecords.get(pos);
+
+        //如果“热块”已经没有存储空间了，要申请新的内存空间
+        if(dataRecord.getFreeSpaceLength() <= 0) {
+            String id = getIDFromInt(fileID.getAndIncrement());
+            Path filePath = rootPath.resolve(id);
+            DataRecord datqRecord = new DataRecord(filePath);
+            //并且及时修改totalBlockNums和invalidBlockNums
+            totalBlockNums += 1;
         }
-        return null;
+
+        //判断当前块的剩余容量是否大于等于length
+        if(dataRecord.getFreeSpaceLength() >= length){//不需要再创建新块，在本块分配存储空间
+            metaRecord = new MetaRecord(dataID,blocklLength.getAndAdd(length),length);
+            //更新fileLength
+            dataRecord.setLength(dataRecord.getFileLength()+length);
+        }else{//需要创建新块，还需要在其他块分配存储空间
+            metaRecord = new MetaRecord(dataID,blocklLength.getAndAdd(length),length);
+            length -= dataRecord.getFileLength();
+            dataRecord.setLength(DataBlock.FILELENGTH);
+
+            while(length > 0){
+
+                MetaRecord record = allocateSpace(dataID, length);
+                length -= record.getLength();
+                metaRecord.merge(record);
+            }
+        }
+
+        lock.unlock();
+
+        return metaRecord;
     }
 
-
+    //从int型的id中构建出一个八位字符串id
+    private static String getIDFromInt(int id){
+        return null;
+    }
 }
 
 

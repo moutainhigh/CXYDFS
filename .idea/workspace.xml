@@ -2,137 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c736a2d-3f0b-4a35-91ba-c0474e76c606" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/master/staticresource/Block.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/master/staticresource/Heartbeat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/master/staticresource/Master.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/master/staticresource/Slave.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataPath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/Fellow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/FileCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/MetaRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo16.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo17.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo18.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo19.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo20.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo21.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo22.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo23.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo24.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo25.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo26.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo27.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo28.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo29.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Demo30.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/serverclient/MappedByteBufferTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/serverclient/TransferToClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/serverclient/TransferToServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/serverclient/TransferToServer2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/CXYDFS.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/log4j/Demo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/agent/MasterAgent$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/agent/MasterAgent.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/dispatcher/MasterDispatcher$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/dispatcher/MasterDispatcher$DispatcherHolder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/dispatcher/MasterDispatcher.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterAccessHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterHeartbeatHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterReadHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterRegisterHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/handler/MasterWriteHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/network/NetworkHelper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/staticresource/Block.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/staticresource/Heartbeat.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/staticresource/Master.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/master/staticresource/Slave.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/AbstractHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/Dispatcher.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/FilePath.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/Handler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/Message.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/MessagePool.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/miscellaneous/Node.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/DataBlock.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/DataPath.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/DataRecord.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/Fellow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/FileCollection.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/MetaRecord$Pair.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/MetaRecord.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/slave/staticresource/Task.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/util/Deseri.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/util/SeriUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo10.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo12.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo13.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo14.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo15.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo16.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo17.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo18.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo19.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo20.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo21.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo22.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo23.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo24.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo25.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo26.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo27.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo28.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo29.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo30.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo6.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo7.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Demo9.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/DemoThread.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/FileBlockReader.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/FileBlockWriter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/FileBlockWriter2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/META-INF/CXYDFS.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/MyObj.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/demo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/master/agent/MasterAgentTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/master/handler/MasterReadHandlerTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/master/handler/MasterWriteHandlerTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/master/staticresource/BlockTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/MappedByteBufferTest$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/MappedByteBufferTest$FileBlockWriter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/MappedByteBufferTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/TransferToClient.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/TransferToServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/serverclient/TransferToServer2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/dispatcher/Demo5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/dispatcher/In.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/dispatcher/MasterDispatcherTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/handler/MasterHeartbeatHandlerTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/test/master/handler/MasterRegisterHandlerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/master/agent/MasterAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/agent/MasterAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterAccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterAccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterHeartbeatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterHeartbeatHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterReadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterReadHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterRegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterRegisterHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/master/handler/MasterWriteHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/master/handler/MasterWriteHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/miscellaneous/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/miscellaneous/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/Deseri.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/Deseri.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/SeriUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/SeriUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Demo14.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Demo14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Demo15.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Demo15.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/master/agent/MasterAgentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/master/agent/MasterAgentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/master/handler/MasterReadHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/master/handler/MasterReadHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slave/staticresource/FileCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/FileCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/slave/staticresource/MetaRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/MetaRecord.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +78,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -369,7 +243,10 @@
       <workItem from="1591360884418" duration="8612000" />
       <workItem from="1591510660651" duration="1746000" />
       <workItem from="1591532065247" duration="4656000" />
-      <workItem from="1591537160622" duration="2223000" />
+      <workItem from="1591537160622" duration="2577000" />
+      <workItem from="1591581049704" duration="395000" />
+      <workItem from="1591582451752" duration="4857000" />
+      <workItem from="1591625070779" duration="4162000" />
     </task>
     <task id="LOCAL-00001" summary="第二阶段2：&#10; 完成networkhandle的接受数据功能&#10; 测试结果见2">
       <created>1588557937189</created>
@@ -441,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590843882166</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="1)验证了零拷贝问题&#10;2）验证了对同一个File对象，是可以以不加锁的方式并发地读取同一块区域，写入不同的区域；">
+      <created>1591540693373</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1591540693373</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +356,8 @@
     <MESSAGE value="第三阶段终结：&#10; 对accessmanager 和 slavemanager 进行了测试，测试通过！" />
     <MESSAGE value="完成masteragent的数据序列化与反序列化工作；&#10;完成了对masterreadhandler的测试；" />
     <MESSAGE value="完成了对masterwriterhandler的测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成了对masterwriterhandler的测试" />
+    <MESSAGE value="1)验证了零拷贝问题&#10;2）验证了对同一个File对象，是可以以不加锁的方式并发地读取同一块区域，写入不同的区域；" />
+    <option name="LAST_COMMIT_MESSAGE" value="1)验证了零拷贝问题&#10;2）验证了对同一个File对象，是可以以不加锁的方式并发地读取同一块区域，写入不同的区域；" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="2" key="#Project_Structure" timestamp="1588648342822">
@@ -483,10 +368,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1588565550633" />
-    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1591364445632">
+    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1591628956280">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591364445632" />
+    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591628956280" />
     <state x="446" y="59" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1589723029722" />
     <state x="504" y="296" width="431" height="315" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1591023000341">
       <screen x="0" y="0" width="1440" height="860" />
@@ -505,10 +390,10 @@
     </state>
     <state x="451" y="276" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591192696652" />
     <state x="401" y="218" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.680@0.0.1280.680" timestamp="1588490569801" />
-    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1590843881036">
+    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1591540691642">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="296" y="0" key="CommitChangelistDialog2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590843881036" />
+    <state x="296" y="0" key="CommitChangelistDialog2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591540691642" />
     <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589202908992" />
     <state x="474" y="124" key="FileChooserDialogImpl" timestamp="1590135025726">
       <screen x="0" y="0" width="1440" height="860" />
@@ -527,25 +412,25 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="492" y="47" key="Github.UntrackedFilesDialog/0.0.1280.680@0.0.1280.680" timestamp="1588508456168" />
-    <state width="1397" height="690" key="GridCell.Tab.0.bottom" timestamp="1591538425754">
+    <state width="1397" height="690" key="GridCell.Tab.0.bottom" timestamp="1591540946244">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="690" key="GridCell.Tab.0.bottom/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538425754" />
+    <state width="1397" height="690" key="GridCell.Tab.0.bottom/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591540946244" />
     <state width="1237" height="521" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1589702019977" />
-    <state width="1397" height="690" key="GridCell.Tab.0.center" timestamp="1591538425754">
+    <state width="1397" height="690" key="GridCell.Tab.0.center" timestamp="1591540946244">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="690" key="GridCell.Tab.0.center/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538425754" />
+    <state width="1397" height="690" key="GridCell.Tab.0.center/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591540946244" />
     <state width="1237" height="521" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1589702019977" />
-    <state width="1397" height="690" key="GridCell.Tab.0.left" timestamp="1591538425754">
+    <state width="1397" height="690" key="GridCell.Tab.0.left" timestamp="1591540946244">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="690" key="GridCell.Tab.0.left/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538425754" />
+    <state width="1397" height="690" key="GridCell.Tab.0.left/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591540946244" />
     <state width="1237" height="521" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1589702019977" />
-    <state width="1397" height="690" key="GridCell.Tab.0.right" timestamp="1591538425754">
+    <state width="1397" height="690" key="GridCell.Tab.0.right" timestamp="1591540946244">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="690" key="GridCell.Tab.0.right/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538425754" />
+    <state width="1397" height="690" key="GridCell.Tab.0.right/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591540946244" />
     <state width="1237" height="521" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1589702019977" />
     <state width="1397" height="275" key="GridCell.Tab.1.bottom" timestamp="1591371531905">
       <screen x="0" y="0" width="1440" height="860" />
@@ -567,15 +452,15 @@
     </state>
     <state width="1397" height="275" key="GridCell.Tab.1.right/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591371531905" />
     <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1589204935401" />
-    <state x="147" y="0" key="SettingsEditor" timestamp="1590723454847">
+    <state x="147" y="0" key="SettingsEditor" timestamp="1591581440207">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="147" y="0" key="SettingsEditor/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590723454847" />
+    <state x="147" y="0" key="SettingsEditor/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591581440207" />
     <state x="131" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1589697368594" />
-    <state x="262" y="96" key="Vcs.Push.Dialog.v2" timestamp="1590843889761">
+    <state x="262" y="96" key="Vcs.Push.Dialog.v2" timestamp="1591540864461">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="262" y="96" key="Vcs.Push.Dialog.v2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590843889761" />
+    <state x="262" y="96" key="Vcs.Push.Dialog.v2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591540864461" />
     <state x="233" y="76" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1588689410641" />
     <state x="105" y="118" width="1232" height="627" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591538391372">
       <screen x="0" y="0" width="1440" height="860" />
@@ -608,10 +493,10 @@
     </state>
     <state x="334" y="191" key="run.anything.popup/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1590243572041" />
     <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1588559761312" />
-    <state x="341" y="1" width="756" height="858" key="search.everywhere.popup" timestamp="1591156283157">
+    <state x="341" y="1" width="756" height="858" key="search.everywhere.popup" timestamp="1591627641344">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="341" y="1" width="756" height="858" key="search.everywhere.popup/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591156283157" />
+    <state x="341" y="1" width="756" height="858" key="search.everywhere.popup/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591627641344" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1588841513635" />
   </component>
   <component name="XDebuggerManager">

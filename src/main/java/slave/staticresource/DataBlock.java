@@ -35,8 +35,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class DataBlock extends Block {
 
-    //当数据块中有效数据的条数与数据的总条数之比低于此阈值时，触发数据迁移
-    public static final float THRESHOLD = 0.25f;
+
+    public static final float THRESHOLD = 0.25f;//当数据块中有效数据的条数与数据的总条数之比低于此阈值时，触发数据迁移
 
     public static final long FILELENGTH = 32l*1024l*1024l;//randomaccessfile文件大小，32M
 
