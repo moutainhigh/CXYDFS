@@ -11,8 +11,8 @@ import java.util.List;
 public class MetaRecord {
 
     private final long dataID;//数据id
-    private final long start;//在block中的逻辑起始地址
-    private final long length;//自身长度
+    private  long start;//在block中的逻辑起始地址
+    private  long length;//自身长度
 
     public MetaRecord(long dataID, long start,long length){
 
@@ -35,6 +35,14 @@ public class MetaRecord {
 
     public long getLength() {
         return length;
+    }
+
+    public void setStart(long start) {
+        this.start = start;
+    }
+
+    public void setLength(long length) {
+        this.length = length;
     }
 
     public void merge(MetaRecord record){

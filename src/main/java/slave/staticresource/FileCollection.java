@@ -7,17 +7,12 @@ package slave.staticresource;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class FileCollection {
 
@@ -27,8 +22,8 @@ public class FileCollection {
     //block的元数据，存储dataid到块的映射，到块中位置的映射
     private final File metaFile;
 
-    //数据块
-    private final List<DataRecord> dataRecords;
+    //数据块,key是文件名
+    private final ConcurrentHashMap<String,DataRecord> dataRecords;
 
     //元数据和数据块存放的根路径
     private final Path rootPath;
@@ -39,8 +34,6 @@ public class FileCollection {
     private Lock writeLock = null;
 
     private AtomicLong blocklLength = null;//块的当前逻辑长度
-    private int totalBlockNums;//已创建的块数
-    private int invalidBlockNums;//已回收（销毁）的块数
 
 
     //通过文件存储的根路径来构造filecollection
@@ -49,19 +42,36 @@ public class FileCollection {
         this.rootPath = rootPath;
         metaFile = rootPath.resolve(DataPath.METAPATH).toFile();
 
-        this.dataRecords = new ArrayList<>();
+        this.dataRecords = new ConcurrentHashMap<>();
 
         this.lock = new ReentrantLock();
     }
 
-    //读取数据
-    //实际的数据读取操作通过封装一个task外包出去了
-    public static void read(MetaRecord record){
+    //读取数据,保证多线程安全
+    //record的length属性会被修改
+    public  void read(MetaRecord record) throws IOException {
+
+        if(record.getLength() <= 0)return;
+        int pos = (int)(record.getStart()%DataBlock.FILELENGTH);
+        DataRecord dataRecord = dataRecords.get(getIDFromInt((int)record.getDataID()));
+        long length = ((DataBlock.FILELENGTH-pos)<=record.getLength())?0:record.getLength()-(DataBlock.FILELENGTH-pos);
+        dataRecord.read(record.getStart(),record.getLength());
+        record.setLength(length);
+        read(record);
 
     }
 
-    //写入数据
-    public static void write(MetaRecord record){
+    //写入数据，保证多线程安全
+    public  void write(MetaRecord record) throws IOException {
+
+        if(record.getLength() <= 0)return;
+        int pos = (int)(record.getStart()%DataBlock.FILELENGTH);
+        DataRecord dataRecord = dataRecords.get(getIDFromInt((int)record.getDataID()));
+        long length = ((DataBlock.FILELENGTH-pos)<=record.getLength())?0:record.getLength()-(DataBlock.FILELENGTH-pos);
+        dataRecord.write(record.getStart(),record.getLength());
+        record.setLength(length);
+        write(record);
+
 
     }
 
@@ -93,17 +103,14 @@ public class FileCollection {
 
         lock.lock();
 
-        //首先要定位出块
-        int pos = totalBlockNums-invalidBlockNums-1;
-        DataRecord dataRecord = dataRecords.get(pos);
+        DataRecord dataRecord = dataRecords.get(getIDFromInt(fileID.get()));
 
         //如果“热块”已经没有存储空间了，要申请新的内存空间
         if(dataRecord.getFreeSpaceLength() <= 0) {
             String id = getIDFromInt(fileID.getAndIncrement());
             Path filePath = rootPath.resolve(id);
-            DataRecord datqRecord = new DataRecord(filePath);
-            //并且及时修改totalBlockNums和invalidBlockNums
-            totalBlockNums += 1;
+            dataRecord = new DataRecord(filePath);
+
         }
 
         //判断当前块的剩余容量是否大于等于length

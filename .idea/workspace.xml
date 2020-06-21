@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c736a2d-3f0b-4a35-91ba-c0474e76c606" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/slave/helper/WriteHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/DataRecord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/slave/staticresource/FileCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/FileCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/slave/staticresource/MetaRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/slave/staticresource/MetaRecord.java" afterDir="false" />
     </list>
@@ -247,6 +247,15 @@
       <workItem from="1591581049704" duration="395000" />
       <workItem from="1591582451752" duration="4857000" />
       <workItem from="1591625070779" duration="4162000" />
+      <workItem from="1591886708585" duration="751000" />
+      <workItem from="1591890019153" duration="92000" />
+      <workItem from="1592101221991" duration="855000" />
+      <workItem from="1592138944999" duration="7243000" />
+      <workItem from="1592387656609" duration="29000" />
+      <workItem from="1592403262763" duration="3699000" />
+      <workItem from="1592459427184" duration="13000" />
+      <workItem from="1592748372582" duration="8000" />
+      <workItem from="1592748399685" duration="3796000" />
     </task>
     <task id="LOCAL-00001" summary="第二阶段2：&#10; 完成networkhandle的接受数据功能&#10; 测试结果见2">
       <created>1588557937189</created>
@@ -368,10 +377,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1588565550633" />
-    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1591628956280">
+    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1592140238951">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591628956280" />
+    <state x="502" y="75" key="#com.intellij.ide.util.MemberChooser/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1592140238951" />
     <state x="446" y="59" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1589723029722" />
     <state x="504" y="296" width="431" height="315" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1591023000341">
       <screen x="0" y="0" width="1440" height="860" />
@@ -390,11 +399,11 @@
     </state>
     <state x="451" y="276" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591192696652" />
     <state x="401" y="218" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.680@0.0.1280.680" timestamp="1588490569801" />
-    <state x="296" y="0" key="CommitChangelistDialog2" timestamp="1591540691642">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1592752362180">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="296" y="0" key="CommitChangelistDialog2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591540691642" />
-    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589202908992" />
+    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1592752362180" />
     <state x="474" y="124" key="FileChooserDialogImpl" timestamp="1590135025726">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
@@ -452,20 +461,24 @@
     </state>
     <state width="1397" height="275" key="GridCell.Tab.1.right/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591371531905" />
     <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1589204935401" />
+    <state x="534" y="142" key="RollbackChangesDialog" timestamp="1592139610715">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="534" y="142" key="RollbackChangesDialog/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1592139610715" />
     <state x="147" y="0" key="SettingsEditor" timestamp="1591581440207">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="147" y="0" key="SettingsEditor/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591581440207" />
     <state x="131" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1589697368594" />
-    <state x="262" y="96" key="Vcs.Push.Dialog.v2" timestamp="1591540864461">
+    <state x="262" y="96" key="Vcs.Push.Dialog.v2" timestamp="1591803430792">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="262" y="96" key="Vcs.Push.Dialog.v2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591540864461" />
+    <state x="262" y="96" key="Vcs.Push.Dialog.v2/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591803430792" />
     <state x="233" y="76" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1588689410641" />
-    <state x="105" y="118" width="1232" height="627" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591538391372">
+    <state x="105" y="118" width="1232" height="627" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1592140544238">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="105" y="118" width="1232" height="627" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1591538391372" />
+    <state x="105" y="118" width="1232" height="627" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.-231.1280.693/0.0.1440.860@0.0.1440.860" timestamp="1592140544238" />
     <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1589204603660" />
     <state x="491" y="147" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1590840501358">
       <screen x="0" y="0" width="1440" height="860" />
@@ -580,6 +593,12 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/slave/staticresource/DataBlock.java</url>
+          <line>31</line>
+          <properties field="activeNums" class="slave.staticresource.DataBlock" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -5,75 +5,105 @@ description:节点上的数据块
 */
 package slave.staticresource;
 
-/*
-*  类DataBlock：
-  属性：
-   int id;//块id,基本信息
-   list nodes;//分布的结点
-   atomicinteger nums;//当前数据条数
-   atomicinteger activenums;//当前有效数据条数
-   FileCollection files;//存储的randomaccessfile文件
-
-  静态属性：
-   float THRESHOLD;//阈值，当数据块中有效数据的条数与数据的总条数之比低于此阈值时，触发数据迁移
-   long FILESIZE;//randomaccessfile文件大小，
-
-  操作：
-   id getID();//获取id
-   nodes getnodes();//获取nodes，互斥访问
-   addnode(node);//增加一个node,互斥访问
-   addnodes(nodes);//增加一批node，互斥访问
-   removenode(node);//删除一个node，互斥访问
-   Path rootpath;//该block所在文件根路径
-*/
-
 import master.staticresource.Block;
+import miscellaneous.Message;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class DataBlock extends Block {
 
+    public static final float THRESHOLD = 0.25f;//当数据块中有效数据的条数与数据的总条数之比低于此阈值时，触发数据块数据迁移
 
-    public static final float THRESHOLD = 0.25f;//当数据块中有效数据的条数与数据的总条数之比低于此阈值时，触发数据迁移
-
-    public static final long FILELENGTH = 32l*1024l*1024l;//randomaccessfile文件大小，32M
+    public static final int FILELENGTH = 32*1024*1024;//存储文件大小，32M
 
     public static final byte METARECORDLENGTH = 24;//元数据项的长度
 
-    public static final int NUMSPERBLOCK = 1000;
+    public static final int NUMSPERBLOCK = 1000;//每个数据块包含的数据条数
 
-    private final AtomicInteger nums;//当前数据条数
+    private final AtomicInteger totalNums;//当前数据总条数
 
     private final AtomicInteger activeNums;//当前有效数据条数
 
-   // private final FileCollection files;//存储的randomaccessfile文件
+    private final Path path;//该块的存储路径
 
-    private Path path;//该块的存储路径
+    private final List<Integer> fellows;//该块分布的结点，用结点id来表示
 
-    public DataBlock(long id, Path path) throws FileNotFoundException {
+    private ReentrantReadWriteLock lock;
+    private Lock readLock;//读锁
+    private Lock writeLock;//写锁
+
+    public DataBlock(long id, Path path,List<Integer> fellows) throws FileNotFoundException {
         super(id);
-        this.nums = new AtomicInteger(0);
+        this.totalNums = new AtomicInteger(0);
         this.activeNums = new AtomicInteger(0);
         this.path = DataPath.ROOTPATH.resolve(Long.toString(id));
-       // this.files = new FileCollection(path);
+
+        this.fellows = new ArrayList<>();
+        this.fellows.addAll(fellows);
+
+        lock = new ReentrantReadWriteLock();
+        readLock = lock.readLock();
+        writeLock = lock.writeLock();
+    }
+
+    public  int getNums() {
+        return totalNums.get();
+    }
+
+    public int getActiveNums() {
+        return activeNums.get();
+    }
+
+    //利用fellow信息完成future规定的任务，在任务未完成之前，读锁不可释放；
+    //该方法修改fellow
+    public void getFellows(Future future){
+
+        readLock.lock();
+        List<Integer> fellowsRef = fellows;
+        /*
+        //start a new thread to get target job finished with fellowsRef
+        future.run();
+        //wait until the job is finished
+        while(future.get());
+        * */
+        readLock.unlock();
 
     }
 
-    public AtomicInteger getNums() {
-        return nums;
+    //利用fellow信息完成future规定的任务，在任务未完成之前，写锁不可释放；
+    //该方法修改fellow
+    public void setFellows(Future future){
+
+        writeLock.lock();
+        List<Integer> fellowsRef = fellows;
+
+        /*
+        //start a new thread to get target job finished with fellowsRef
+        future.run();
+        //wait until the job is finished
+        future.get();
+        * */
+        writeLock.unlock();
     }
 
-    public AtomicInteger getActiveNums() {
-        return activeNums;
+    //读取数据
+    //直接调用filecollection的api
+    public void read(Message message){
+
     }
 
-    //filecollections可能会被多个线程同时访问
-    //它的线程安全性，由它自身去维护
-//    public FileCollection getFiles() {
-//        return files;
-//    }
+    //写入数据
+    //先要确保其他其他块具备写入的条件
+    public void write(Message message){
+
+    }
 }
 
 
